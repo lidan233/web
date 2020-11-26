@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lidan.Dao.PolygonInfo">
+
+    <resultMap id="BaseResultMap" type="com.lidan.Model.Polygon">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="projectid"  jdbcType="INTEGER"  property="projectid" />
+        <result column="user_id"  jdbcType="INTEGER"  property="userid"/>
+        <result column="json" jdbcType="VARCHAR"  property="json"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+
+
+    <select id="addPolygon" parameterType="com.lidan.Model.Polygon"  resultType="java.lang.Integer" >
+      with data as( select #{json}::json AS fc)
+       insert into temp_polygon(geom) select  ST_SetSRID( ST_AsText(ST_GeomFromGeoJSON(feat->>'geometry')),4326) FROM (
+       SELECT json_array_elements(fc->'features') AS feat
+       FROM data) AS f returning id;
+    </select>
+    <update id="AfterInsert" parameterType="com.lidan.Model.Polygon">
+      update temp_polygon set projectid=#{polygon.projectid} where id =#{id};
+      update temp_polygon set user_id=#{polygon.userid} where id =#{id};
+
+    </update>
+
+    <delete id="deleteByid" parameterType="java.lang.Integer">
+        delete from temp_polygon where  id = #{id} ;
+    </delete>
+
+    <select id="selectByPoint" parameterType="com.lidan.Model.Point" resultMap="BaseResultMap" >
+            select a.id as id,a.projectid as projectid,b.id as user_id,st_astext(geom) as json,b.name as name
+                    from temp_polygon as a , all_user as b where
+                            ST_Intersects(
+                                ST_Buffer(
+                                     CAST(
+                               ST_SetSRID(
+                             ST_MakePoint(#{point.x}, #{point.y})
+                                       ,4326)
+                                AS geography)
+                                         ,#{distance})
+                                       ,geom)=true and a.user_id=b.id
+                                       order by st_distance(geom, CAST(
+                                                            ST_SetSRID(
+                                                          ST_MakePoint(#{point.x}, #{point.y})
+                                                                    ,4326)
+                                                            AS geography)) limit 1;
+    </select>
+
+
+    <update id="updateFeatureJson" parameterType="com.lidan.Model.Polygon" >
+        update temp_polygon set geom = ST_SetSRID(ST_GeomFromGeoJSON(json),4326) where id = #{id} ;
+    </update>
+
+
+
+
+</mapper>

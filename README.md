@@ -1,37 +1,27 @@
-## Welcome to GitHub Pages
+# 这是我大一webgis的课设
+也是我走上java web之路的开始
 
-You can use the [editor on GitHub](https://github.com/lidan233/web/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+# webgis项目
+前端是原生的vue app，后端是java项目，前端使用了openlayers，实现了对遥感图像的矢量化的操作，并支持各种坐标系的导出功能，如4326等。 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## 项目重点
 
-### Markdown
+### 项目采用了前后端分离设计
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+#### 前端
+依赖库：openlayers, jquery, vue, vue element. 
+实现了：基本的权限控制，项目操作导出，点，线，面等等操作。 
 
-```markdown
-Syntax highlighted code block
+### 后端
+依赖库：durid,mybatis,sprintboot,gson,redis等等。详情请看pom.xml
 
-# Header 1
-## Header 2
-### Header 3
+### 基本效果
+![](1.png)
+![](2.png)
 
-- Bulleted
-- List
+### note
+1. 分离的设计，support文件夹中的lib和js可以单独部署。 
+2. 前后端分离，支持高并发的设计，所有的模块均已微服务化，加工成API。 
 
-1. Numbered
-2. List
 
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lidan233/web/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out. i am lidan .
+### 欢迎关注我的个人网站crazyweirdo.xyz 

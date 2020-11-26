@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lidan.Dao.UserInfo">
+
+    <resultMap id="ProjectUserBaseMap" type="com.lidan.Model.User">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="name"  property="name"/>
+        <result column="account" property="account"/>
+        <result column="passwd" property="passwd"/>
+        <!--<result column="projectid" property="projectid"/>-->
+
+    </resultMap>
+
+    <resultMap id="RootUser" type="com.lidan.Model.User">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" property="name"/>
+        <result column="account" property="account"/>
+        <result column="passwd" property="passwd"/>
+        <result column="permission" property="permission"/>
+    </resultMap>
+
+
+    <sql id="Base_Column_List">
+        id, projectid,name,passwd,account
+    </sql>
+    <select id="getAllUsers" resultType="com.lidan.Model.User">
+        select id from all_user
+    </select>
+    <select id="getUserById" parameterType="java.lang.Integer" resultType="com.lidan.Model.User">
+        select
+        <include refid="Base_Column_List" />
+        from all_user
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteUserByid" parameterType="java.lang.Integer">
+        delete from all_user
+        where id = #{id,jdbcType=INTEGER}
+    </delete>
+    <insert id="addUser" parameterType="com.lidan.Model.User">
+        insert into all_user(projectid, name, passwd,account
+        )
+        values ( #{projectid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},#{passwd,jdbcType=VARCHAR},#{account,jdbcType=VARCHAR}
+        )
+    </insert>
+    <insert id="addUserWithoutId" parameterType="com.lidan.Model.User">
+        insert into all_user(projectid, name, passwd,account
+        )
+        values (#{projectid,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},#{passwd,jdbcType=VARCHAR},#{account,jdbcType=VARCHAR}
+         )
+    </insert>
+    <select id="selectByAccount" parameterType="java.lang.String" resultType="com.lidan.Model.User">
+        select * from all_user where account = #{account} ;
+    </select>
+
+    <select id="selectByProjectid" parameterType="java.lang.Integer" resultType="com.lidan.Model.User">
+        select * from all_user where projectid = #{projectid} ;
+    </select>
+
+
+    <select id="selectProjectUserByid" parameterType="java.lang.Integer" resultMap="ProjectUserBaseMap">
+        select a.id as id ,a.name as name,
+        a.account as account,a.passwd as passwd,b.project_id as project
+        from project_user  a,projects_users_relation b  where a.id = #{id}  and  b.project_user_id = a.id order by id limit 1 ;
+    </select>
+
+
+
+    <!--<insert id="insertSelective" parameterType="com.lidan.Model.User">-->
+    <!--insert into all_user-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+    <!--<if test="id != null">-->
+    <!--id,-->
+    <!--</if>-->
+    <!--<if test="name != null">-->
+    <!--name,-->
+    <!--</if>-->
+    <!--<if test="projectid != null">-->
+    <!--projectid,-->
+    <!--</if>-->
+    <!--<if test="passwd != null">-->
+    <!--passwd,-->
+    <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+    <!--<if test="id != null">-->
+    <!--#{id,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--<if test="name != null">-->
+    <!--#{name,jdbcType=VARCHAR},-->
+    <!--</if>-->
+    <!--<if test="projectid != null">-->
+    <!--#{projectid,jdbcType=INTEGER},-->
+    <!--</if>-->
+    <!--<if test="passwd!=null">-->
+    <!--#{passwd,jdbcType=VARCHAR} ,-->
+    <!--</if>-->
+    <!--</trim>-->
+    <!--</insert>-->
+    <update id="updateUserById" parameterType="com.lidan.Model.User">
+        update all_user
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="projectid != null">
+                projectid = #{projectid,jdbcType=INTEGER},
+            </if>
+            <if test="passwd != null">
+                passwd = #{passwd,jdbcType=VARCHAR},
+            </if>
+            <if test="account != null">
+                account=#{account,jdbcType=VARCHAR},
+            </if>
+        </set>
+
+
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+
+    <select id="getRootUser" resultMap="RootUser">
+        select id,name,account,passwd ,'root' as permission from admin_user ;
+    </select>
+
+    <select id="getProjectUserByaccount" parameterType="java.lang.String" resultMap="ProjectUserBaseMap">
+        select a.id as id ,a.name as name,
+        a.account as account,a.passwd as passwd
+        from project_user  a where a.account = #{account}  ;
+    </select>
+
+    <select id="addProjectUser" parameterType="com.lidan.Model.User" resultType="java.lang.Integer" >
+        insert into project_user(name,account,passwd) values(#{name},#{account},#{passwd}) returning id ;
+    </select>
+
+    <select id="getProjectIdByRequstcode" parameterType="String" resultType="java.lang.Integer">
+        select projectid from requestcode where code = #{requestcode};
+    </select>
+    <select id="getProjectIdByUserid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select id from projects_users_relation where id = #{id} ;
+    </select>
+
+
+
+</mapper>

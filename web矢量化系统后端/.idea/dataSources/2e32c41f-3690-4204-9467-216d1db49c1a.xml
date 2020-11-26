@@ -1,0 +1,493 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="gisdb@localhost [2]">
+  <database-model serializer="dbm" rdbms="POSTGRES" format-version="4.8">
+    <root id="1">
+      <ServerVersion>11.2</ServerVersion>
+    </root>
+    <database id="2" parent="1" name="china">
+      <ObjectId>34756</ObjectId>
+    </database>
+    <database id="3" parent="1" name="gisdb">
+      <ObjectId>16384</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </database>
+    <database id="4" parent="1" name="lidan">
+      <ObjectId>55230</ObjectId>
+    </database>
+    <database id="5" parent="1" name="postgres">
+      <ObjectId>13364</ObjectId>
+      <Comment>default administrative connection database</Comment>
+    </database>
+    <role id="6" parent="1" name="lidan">
+      <ObjectId>10</ObjectId>
+      <SuperRole>1</SuperRole>
+      <Inherit>1</Inherit>
+      <CreateRole>1</CreateRole>
+      <CreateDb>1</CreateDb>
+      <CanLogin>1</CanLogin>
+      <Replication>1</Replication>
+      <ConnectionLimit>-1</ConnectionLimit>
+      <BypassRls>1</BypassRls>
+    </role>
+    <role id="7" parent="1" name="pg_execute_server_program">
+      <ObjectId>4571</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="8" parent="1" name="pg_monitor">
+      <ObjectId>3373</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="9" parent="1" name="pg_read_all_settings">
+      <ObjectId>3374</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="10" parent="1" name="pg_read_all_stats">
+      <ObjectId>3375</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="11" parent="1" name="pg_read_server_files">
+      <ObjectId>4569</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="12" parent="1" name="pg_signal_backend">
+      <ObjectId>4200</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="13" parent="1" name="pg_stat_scan_tables">
+      <ObjectId>3377</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <role id="14" parent="1" name="pg_write_server_files">
+      <ObjectId>4570</ObjectId>
+      <Inherit>1</Inherit>
+      <ConnectionLimit>-1</ConnectionLimit>
+    </role>
+    <schema id="15" parent="3" name="information_schema">
+      <ObjectId>13068</ObjectId>
+    </schema>
+    <schema id="16" parent="3" name="pg_catalog">
+      <ObjectId>11</ObjectId>
+      <Comment>system catalog schema</Comment>
+    </schema>
+    <schema id="17" parent="3" name="pg_temp_1">
+      <ObjectId>11804</ObjectId>
+    </schema>
+    <schema id="18" parent="3" name="pg_toast">
+      <ObjectId>99</ObjectId>
+      <Comment>reserved schema for TOAST tables</Comment>
+    </schema>
+    <schema id="19" parent="3" name="pg_toast_temp_1">
+      <ObjectId>11805</ObjectId>
+    </schema>
+    <schema id="20" parent="3" name="public">
+      <ObjectId>44548</ObjectId>
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <sequence id="21" parent="20" name="all_user_id_seq">
+      <ObjectId>47179</ObjectId>
+      <StateNumber>1473</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="22" parent="20" name="bou1_4l_gid_seq">
+      <ObjectId>46913</ObjectId>
+      <StateNumber>1252</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="23" parent="20" name="bou1_4p_gid_seq">
+      <ObjectId>46899</ObjectId>
+      <StateNumber>1248</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="24" parent="20" name="bou2_4l_gid_seq">
+      <ObjectId>46924</ObjectId>
+      <StateNumber>1254</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="25" parent="20" name="bou2_4p_gid_seq">
+      <ObjectId>46935</ObjectId>
+      <StateNumber>1256</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="26" parent="20" name="bount_line_gid_seq">
+      <ObjectId>46457</ObjectId>
+      <StateNumber>1225</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="27" parent="20" name="diqujie_polyline_gid_seq">
+      <ObjectId>46990</ObjectId>
+      <StateNumber>1262</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="28" parent="20" name="hyd1_4l_gid_seq">
+      <ObjectId>46802</ObjectId>
+      <StateNumber>1236</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="29" parent="20" name="hyd1_4p_gid_seq">
+      <ObjectId>46784</ObjectId>
+      <StateNumber>1234</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="30" parent="20" name="point_gid_seq">
+      <ObjectId>47014</ObjectId>
+      <StateNumber>1288</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="31" parent="20" name="project_id_seq">
+      <ObjectId>47168</ObjectId>
+      <StateNumber>1472</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="32" parent="20" name="rai_4m_gid_seq">
+      <ObjectId>46826</ObjectId>
+      <StateNumber>1238</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="33" parent="20" name="requestcode_id_seq">
+      <ObjectId>47236</ObjectId>
+      <StateNumber>1550</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="34" parent="20" name="res1_4m_gid_seq">
+      <ObjectId>46968</ObjectId>
+      <StateNumber>1258</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="35" parent="20" name="res2_4m_gid_seq">
+      <ObjectId>46837</ObjectId>
+      <StateNumber>1240</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="36" parent="20" name="river4_polyline_gid_seq">
+      <ObjectId>46708</ObjectId>
+      <StateNumber>1228</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="37" parent="20" name="river5_polyline_gid_seq">
+      <ObjectId>46848</ObjectId>
+      <StateNumber>1242</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="38" parent="20" name="roa_4m_gid_seq">
+      <ObjectId>46888</ObjectId>
+      <StateNumber>1244</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="39" parent="20" name="temp_id_seq">
+      <ObjectId>47084</ObjectId>
+      <StateNumber>1437</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="40" parent="20" name="temp_lines_id_seq">
+      <ObjectId>47113</ObjectId>
+      <StateNumber>1460</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="41" parent="20" name="temp_points_id_seq">
+      <ObjectId>47102</ObjectId>
+      <StateNumber>1456</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="42" parent="20" name="temp_polygon_id_seq">
+      <ObjectId>47124</ObjectId>
+      <StateNumber>1464</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="43" parent="20" name="xianch_point_gid_seq">
+      <ObjectId>46979</ObjectId>
+      <StateNumber>1260</StateNumber>
+      <SequenceIdentity>1..2147483647</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <object-type id="44" parent="20" name="spheroid">
+      <ObjectId>44881</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="45" parent="20" name="geometry">
+      <ObjectId>44885</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="46" parent="20" name="box3d">
+      <ObjectId>44912</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="47" parent="20" name="box2d">
+      <ObjectId>44916</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="48" parent="20" name="box2df">
+      <ObjectId>44920</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="49" parent="20" name="gidx">
+      <ObjectId>44924</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="50" parent="20" name="geometry_dump">
+      <ObjectId>45184</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="51" parent="20" name="valid_detail">
+      <ObjectId>45304</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="52" parent="20" name="geography">
+      <ObjectId>45543</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="53" parent="20" name="raster">
+      <ObjectId>45862</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>base-type</SubKind>
+      <SubCategory>user-defined</SubCategory>
+      <Definition>-</Definition>
+    </object-type>
+    <object-type id="54" parent="20" name="rastbandarg">
+      <ObjectId>45872</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="55" parent="20" name="geomval">
+      <ObjectId>45875</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="56" parent="20" name="addbandarg">
+      <ObjectId>45902</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="57" parent="20" name="summarystats">
+      <ObjectId>45915</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="58" parent="20" name="agg_count">
+      <ObjectId>45946</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="59" parent="20" name="reclassarg">
+      <ObjectId>46046</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="60" parent="20" name="agg_samealignment">
+      <ObjectId>46298</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <object-type id="61" parent="20" name="unionarg">
+      <ObjectId>46353</ObjectId>
+      <StateNumber>1224</StateNumber>
+      <SubKind>composite</SubKind>
+      <SubCategory>composite</SubCategory>
+    </object-type>
+    <table id="62" parent="20" name="admin">
+      <ObjectId>47135</ObjectId>
+      <StateNumber>1466</StateNumber>
+    </table>
+    <table id="63" parent="20" name="all_user">
+      <ObjectId>47181</ObjectId>
+      <StateNumber>1473</StateNumber>
+    </table>
+    <table id="64" parent="20" name="bou1_4l">
+      <ObjectId>46915</ObjectId>
+      <StateNumber>1252</StateNumber>
+    </table>
+    <table id="65" parent="20" name="bou1_4p">
+      <ObjectId>46901</ObjectId>
+      <StateNumber>1248</StateNumber>
+    </table>
+    <table id="66" parent="20" name="bou2_4l">
+      <ObjectId>46926</ObjectId>
+      <StateNumber>1254</StateNumber>
+    </table>
+    <table id="67" parent="20" name="bou2_4p">
+      <ObjectId>46937</ObjectId>
+      <StateNumber>1256</StateNumber>
+    </table>
+    <table id="68" parent="20" name="bount_line">
+      <ObjectId>46459</ObjectId>
+      <StateNumber>1225</StateNumber>
+    </table>
+    <table id="69" parent="20" name="diqujie_polyline">
+      <ObjectId>46992</ObjectId>
+      <StateNumber>1262</StateNumber>
+    </table>
+    <table id="70" parent="20" name="hyd1_4l">
+      <ObjectId>46804</ObjectId>
+      <StateNumber>1236</StateNumber>
+    </table>
+    <table id="71" parent="20" name="hyd1_4p">
+      <ObjectId>46786</ObjectId>
+      <StateNumber>1234</StateNumber>
+    </table>
+    <table id="72" parent="20" name="point">
+      <ObjectId>47016</ObjectId>
+      <StateNumber>1288</StateNumber>
+    </table>
+    <table id="73" parent="20" name="project">
+      <ObjectId>47170</ObjectId>
+      <StateNumber>1683</StateNumber>
+    </table>
+    <table id="74" parent="20" name="rai_4m">
+      <ObjectId>46828</ObjectId>
+      <StateNumber>1238</StateNumber>
+    </table>
+    <table id="75" parent="20" name="requestcode">
+      <ObjectId>47238</ObjectId>
+      <StateNumber>1550</StateNumber>
+    </table>
+    <table id="76" parent="20" name="res1_4m">
+      <ObjectId>46970</ObjectId>
+      <StateNumber>1258</StateNumber>
+    </table>
+    <table id="77" parent="20" name="res2_4m">
+      <ObjectId>46839</ObjectId>
+      <StateNumber>1240</StateNumber>
+    </table>
+    <table id="78" parent="20" name="river4_polyline">
+      <ObjectId>46710</ObjectId>
+      <StateNumber>1228</StateNumber>
+    </table>
+    <table id="79" parent="20" name="river5_polyline">
+      <ObjectId>46850</ObjectId>
+      <StateNumber>1242</StateNumber>
+    </table>
+    <table id="80" parent="20" name="roa_4m">
+      <ObjectId>46890</ObjectId>
+      <StateNumber>1244</StateNumber>
+    </table>
+    <table id="81" parent="20" name="source_from">
+      <ObjectId>47249</ObjectId>
+      <StateNumber>1580</StateNumber>
+    </table>
+    <table id="82" parent="20" name="spatial_ref_sys">
+      <ObjectId>45188</ObjectId>
+      <StateNumber>1224</StateNumber>
+    </table>
+    <table id="83" parent="20" name="temp">
+      <ObjectId>47086</ObjectId>
+      <StateNumber>1437</StateNumber>
+    </table>
+    <table id="84" parent="20" name="temp_lines">
+      <ObjectId>47072</ObjectId>
+      <StateNumber>1527</StateNumber>
+    </table>
+    <table id="85" parent="20" name="temp_points">
+      <ObjectId>47066</ObjectId>
+      <StateNumber>1526</StateNumber>
+    </table>
+    <table id="86" parent="20" name="temp_polygon">
+      <ObjectId>47078</ObjectId>
+      <StateNumber>1534</StateNumber>
+    </table>
+    <table id="87" parent="20" name="xianch_point">
+      <ObjectId>46981</ObjectId>
+      <StateNumber>1260</StateNumber>
+    </table>
+    <view id="88" parent="20" name="geography_columns">
+      <ObjectId>45565</ObjectId>
+      <StateNumber>1224</StateNumber>
+    </view>
+    <view id="89" parent="20" name="geometry_columns">
+      <ObjectId>45707</ObjectId>
+      <StateNumber>1224</StateNumber>
+    </view>
+    <view id="90" parent="20" name="raster_columns">
+      <ObjectId>46430</ObjectId>
+      <StateNumber>1224</StateNumber>
+    </view>
+    <view id="91" parent="20" name="raster_overviews">
+      <ObjectId>46439</ObjectId>
+      <StateNumber>1224</StateNumber>
+    </view>
+  </database-model>
+</dataSource>

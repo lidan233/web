@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*"/>    <!-- 允许所有脚本跨域访问 -->
+
+
+
+    <link href="http://localhost/vueApp/supports/js/openlayers-4.6/ol.css" rel="stylesheet" type="text/css"/>
+    <link href="http://localhost/vueApp/supports/lib/mygis.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="http://localhost/vueApp/supports/jquery-ui.min.css" rel="stylesheet" type="text/css"/>-->
+
+
+    <script src="http://localhost/vueApp/supports/js/openlayers-4.6/ol.js" type="text/javascript"></script>
+    <script src="http://localhost/vueApp/supports/js/jquery-3.2.1.min.js" type="text/javascript"></script>
+    <!--<script src="http://localhost/vueApp/supports/jquery-ui.min.js" type="text/javascript"></script>-->
+
+
+    <script src="http://localhost/vueApp/supports/lib/UUID.js" type="text/javascript"></script>
+    <script src="http://localhost/vueApp/supports/lib/Connector.js" type="text/javascript"></script>
+    <script src="http://localhost/vueApp/supports/lib/ProjectionUtils.js" type="text/javascript"></script>
+    <script src="http://localhost/vueApp/supports/lib/MapControl.js" type="text/javascript"></script>
+
+    <!--<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>-->
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jqueryui/1.11.4/jquery-ui.js"</script>
+
+    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/jqueryui/1.11.4/jquery-ui.css" />
+    <link rel="stylesheet" href="http://localhost/vueApp/supports/js/ol-ext.css">
+    <script type="text/javascript" src="http://localhost/vueApp/supports/js/ol-ext.js"></script>
+
+
+    <script>
+      var mapcontrol ;
+      function initmap() {
+        mapcontrol = new MapControl({
+          target: "mapcontrol",
+          backgroundMap: "GOOGLE_SATELLITE_CHINA",
+          zoom: 15
+        });
+        mapcontrol.setDrawOperation("SELECT");
+      }
+
+      function changeBkMap() {
+        mapcontrol.setBackgroundMap($("#bkmap").val());
+      }
+      function changeLayer(){
+        mapcontrol.setLayer($("#layer").val()) ;
+      }
+
+
+    </script>
+
+    <title>forpcwang</title>
+  </head>
+  <body>
+  <div id="dialog"></div>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+  </body>
+</html>

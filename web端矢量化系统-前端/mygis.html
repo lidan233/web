@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Access-Control-Allow-Origin" content="*">
+
+        <link href="supports/js/openlayers-4.6/ol.css" rel="stylesheet" type="text/css"/>
+        <link href="supports/jquery-ui.min.css" rel="stylesheet" type="text/css"/>
+        <script src="supports/openlayers-4.6/ol.js" type="text/javascript"></script>
+        <script src="supports/jquery-3.2.1.min.js" type="text/javascript"></script>
+        <script src="supports/jquery-ui.min.js" type="text/javascript"></script>
+
+        <link href="lib/mygis.css" rel="stylesheet" type="text/css"/>
+        <script src="lib/UUID.js" type="text/javascript"></script>
+        <script src="lib/Connector.js" type="text/javascript"></script>
+        <script src="lib/MapControl.js" type="text/javascript"></script>
+        <script src="lib/ProjectionUtils.js" type="text/javascript"></script>
+        <script>
+            var mapcontrol;
+            $(document).ready(function () {
+                initmap();
+            });
+
+            function initmap() {
+                mapcontrol = new MapControl({
+                    target: "mapcontrol",//divID
+//                    backgroundMap: "AMAP_ROAD",
+                    backgroundMap: "GOOGLE_SATELLITE_CHINA",
+                    zoom: 15
+                });
+                mapcontrol.setDrawOperation("SELECT");
+            }
+
+            function changeBkMap() {
+                mapcontrol.setBackgroundMap($("#bkmap").val());
+            }
+            function changeLayer(){
+                mapcontrol.setLayer($("#layer").val()) ;
+            }
+        </script>
+    </head>
+    <body>
+        <div>
+            <button onclick="mapcontrol.setDrawOperation('SELECT')">选择</button>
+            <button onclick="mapcontrol.setDrawOperation('POINT')">点</button>
+            <button onclick="mapcontrol.setDrawOperation('LINESTRING')">线</button>
+            <button onclick="mapcontrol.setDrawOperation('POLYGON')">多边形</button>
+            <button onclick="mapcontrol.cancel()">撤销</button>
+            <button onclick="mapcontrol.savebyuser()">保存</button>
+            <button onclick="mapcontrol.show()">弹窗</button>
+            <select id="bkmap" onchange="changeBkMap();">
+                <option value="GOOGLE_SATELLITE_CHINA">谷歌影像(中国)</option>
+                <option value="GOOGLE_ROADMAP_CHINA">谷歌地图(中国)</option>
+                <option value="GOOGLE_SATELLITE">谷歌影像</option>
+                <option value="GOOGLE_ROADMAP">谷歌地图</option>
+                <option value="AMAP_ROAD">高德地图</option>
+                <option value="AMAP_SATELLITE">高德影像</option>
+                <option value="TIANDITU_ROAD">天地图</option>
+                <option value="BING_ROAD">Bing地图</option>
+                <option value="BING_SATELLITE">Bing影像</option>
+                <option value="OSM">OpenStreetMap</option>
+            </select>
+
+            <select id="layer" onchange="changeLayer();">
+                <option value="POINT">操作图层(点)</option>
+                <option value="LINESTRING">操作图层(线)</option>
+                <option value="POLYGON">操作图层(面）</option>
+            </select>
+
+        </div>
+        <div id="mapcontrol1"></div>
+        <div id="dialog"></div>
+    </body>
+</html>

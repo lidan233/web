@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lidan.Dao.PointInfo">
+    <resultMap id="BaseResultMap" type="com.lidan.Model.Point">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="x"  property="x" />
+        <result column="y"  property="y"/>
+        <result column="projectid"  property="projectid"/>
+        <result column="userid" property="userid"/>
+        <result column="'name" property="name"></result>
+    </resultMap>
+
+    <resultMap id="BaseResultAllMap" type="com.lidan.Model.Point">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="json"  property="json" />
+        <result column="projectid"  property="projectid"/>
+        <result column="userid" property="userid"/>
+        <result column="'name" property="name"></result>
+    </resultMap>
+
+
+
+    <select id="selectByPointAll" parameterType="com.lidan.Model.Point" resultMap="BaseResultAllMap" >
+            select a.id as id,a.projectid as projectid,st_astext(a.geom) as json ,b.name as name,b.id as userid
+                    from temp_points as a , all_user as b where
+                            ST_Intersects(
+                                ST_Buffer(
+                                     CAST(
+                               ST_SetSRID(
+                             ST_MakePoint(#{point.x}, #{point.y})
+                                       ,4326)
+                                AS geography)
+                                         ,#{distance})
+                                       ,geom)=true and a.user_id=b.id
+                                       order by st_distance(geom, CAST(
+                                                            ST_SetSRID(
+                                                          ST_MakePoint(#{point.x}, #{point.y})
+                                                                    ,4326)
+                                                            AS geography)) limit 1;
+    </select>
+
+
+    <select id="addPoint" parameterType="com.lidan.Model.Point" resultType="java.lang.Integer"  >
+      with data as( select #{json}::json AS fc)
+       insert into temp_points(geom) select  ST_SetSRID( ST_AsText(ST_GeomFromGeoJSON(feat->>'geometry')),4326) FROM (
+       SELECT json_array_elements(fc->'features') AS feat
+       FROM data) AS f returning id;
+
+    </select>
+
+    <update id="AfterInsert" >
+        update  temp_points set projectid=#{point.projectid} where id =#{id} ;
+        update  temp_points set user_id=#{point.userid} where id = #{id} ;
+    </update>
+
+
+    <delete id="deleteByid" parameterType="java.lang.Integer">
+        delete from temp_points where  id = #{id} ;
+    </delete>
+
+    <delete  id="deleteByextent" parameterType="com.lidan.Model.Extent" >
+        delete from temp_points where ST_X(geom) <![CDATA[ >= ]]> #{extent.extent_min_x} and ST_X(geom)  <![CDATA[ <= ]]> #{extent.extent_max_x,jdbcType=FLOAT}
+            and ST_Y(geom) <![CDATA[ >= ]]> #{extent.extent_min_y} and ST_Y(geom)  <![CDATA[ <= ]]> #{extent.extent_max_y} ;
+    </delete>
+
+    <delete id="deleteByPointArea" >
+        delete from temp_points where ST_Intersects(
+                                ST_Buffer(
+                                     CAST(
+                               ST_SetSRID(
+                             ST_MakePoint(#{point.x}, #{point.y})
+                                       ,4326)
+                                AS geography)
+                                         ,#{distance})
+                                       ,geom)=true ;
+    </delete>
+
+
+    <select id="selectByPoint" parameterType="com.lidan.Model.Point" resultMap="BaseResultMap" >
+            select a.id as id,a.projectid as projectid,st_x(a.geom) as x ,st_y(a.geom) as y,b.name as name,b.id as userid
+                    from temp_points as a , all_user as b where
+                            ST_Intersects(
+                                ST_Buffer(
+                                     CAST(
+                               ST_SetSRID(
+                             ST_MakePoint(#{point.x}, #{point.y})
+                                       ,4326)
+                                AS geography)
+                                         ,#{distance})
+                                       ,geom)=true and a.user_id=b.id
+                                       order by st_distance(geom, CAST(
+                                                            ST_SetSRID(
+                                                          ST_MakePoint(#{point.x}, #{point.y})
+                                                                    ,4326)
+                                                            AS geography)) limit 1;
+    </select>
+
+    <update id="updateFeatureJson" parameterType="com.lidan.Model.Point" >
+        update temp_points set geom = ST_SetSRID(ST_GeomFromGeoJSON(json),4326) where id = #{id} ;
+    </update>
+
+</mapper>

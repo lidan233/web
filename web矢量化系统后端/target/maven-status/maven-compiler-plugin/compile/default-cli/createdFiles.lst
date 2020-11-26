@@ -1,0 +1,11 @@
+com/lidan/Controller/PersonRegister.class
+com/lidan/Controller/PersonLogin.class
+com/lidan/job/ObjecttoString.class
+com/lidan/Sercurity/Config/CORSConfiguration.class
+com/lidan/Dao/PersonInfo.class
+com/lidan/job/GisUitli.class
+com/lidan/Service/Impl/UserServiceImpl.class
+com/lidan/Model/Response.class
+com/lidan/Sercurity/Contants/ConstantKit.class
+com/lidan/Sercurity/Config/AuthorizationInterceptor.class
+com/lidan/Sercurity/Config/ChannelFilter.class

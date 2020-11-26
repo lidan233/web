@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lidan.Dao.ProjectInfo">
+    <resultMap id="BaseResultMap" type="com.lidan.Model.Project">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="source_type" jdbcType="VARCHAR" property="source_kind" />
+        <result column="center"  property="center_str" />
+        <result column="extent_min"  property="extent_min_str"/>
+        <result column="extent_max"  property="extent_max_str"/>
+        <result column="features" property="features"/>
+        <result column="name" property="project_user_name"/>
+    </resultMap>
+
+    <resultMap id="ExtentMap" type="com.lidan.Model.Extent">
+        <result column="maxx"  property="extent_max_x"/>
+        <result column="maxy"  property="extent_max_y"/>
+        <result column="minx"  property="extent_min_x"/>
+        <result column="miny"  property="extent_min_y" />
+    </resultMap>
+
+
+    <select id="getProjectByid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      select a.id,a.source_type,st_astext(a.center) as center ,st_astext(a.extent_min) as extent_min,st_astext(a.extent_max) as extent_max,a.features as features,c.name as name
+      from project as a ,projects_users_relation as b ,project_user as c where
+      a.id = b.project_id and b.project_user_id = c.id and a.id=#{id};
+    </select>
+
+
+    <select id="getAllProjectInfo"  resultType="com.lidan.Model.Project">
+      select a.id,a.source_type,st_astext(a.center) as center ,st_astext(a.extent_min) as extent_min,st_astext(a.extent_max) as extent_max,a.features as features,c.name as name
+      from project as a ,projects_users_relation as b ,project_user as c where
+      a.id = b.project_id and b.project_user_id = c.id ;
+    </select>
+
+    <insert id="addProject" parameterType="com.lidan.Model.Project" useGeneratedKeys="true" keyProperty="id" keyColumn="id" >
+        insert into project(source_type,center,extent_max,extent_min,features)
+                    values(#{source_kind,jdbcType=VARCHAR}
+                        ,st_setsrid(st_makepoint(
+                                #{center.x,jdbcType=FLOAT},#{center.y,jdbcType=FLOAT}),4326)
+                        ,st_setsrid(st_makepoint(
+                              #{extent.extent_max_x,jdbcType=FLOAT},#{extent.extent_max_y,jdbcType=FLOAT}),4326)
+                        ,st_setsrid(st_makepoint(
+                            #{extent.extent_min_x,jdbcType=FLOAT},#{extent.extent_min_y,jdbcType=FLOAT} ),4326)
+                          ,#{features})
+                        returning id ;
+
+
+    </insert>
+    <insert id="chooseProjectUser" parameterType="java.lang.Integer" >
+        insert into projects_users_relation(project_id,project_user_id) values(projectid,user_id) ;
+    </insert>
+
+    <select id="getProjectUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        select id from project_user where account=#{account} ;
+    </select>
+
+    <select id="getProjectIdFromUserid" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+         select project_id from projects_users_relation where project_user_id = #{id} ;
+    </select>
+
+    <delete id="deleteProjectByid" parameterType="java.lang.Integer" >
+        delete from project where id = #{id} ;
+        delete from temp_points where projectid = id ;
+        delete from temp_polygon where projectid = id ;
+        delete from temp_lines where projectid = id ;
+        delete from projects_users_relation where project_id = id ;
+    </delete>
+
+    <select id="getProjectInfoByProjectUserid" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+      select a.id,a.source_type,st_astext(a.center) as center ,st_astext(a.extent_min) as extent_min,st_astext(a.extent_max) as extent_max,a.features as features,c.name as name
+      from project as a ,projects_users_relation as b ,project_user as c where
+      a.id = b.project_id and b.project_user_id = c.id and c.id = #{id};
+    </select>
+
+    <select id="getProjectInfoByProjectUserAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+      select a.id,a.source_type,st_astext(a.center) as center ,st_astext(a.extent_min) as extent_min,st_astext(a.extent_max) as extent_max,a.features as features,c.name as name
+      from project as a ,projects_users_relation as b ,project_user as c where
+      a.id = b.project_id and b.project_user_id = c.id and c.account = #{account};
+    </select>
+
+
+
+    <select id="getUserNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from all_user where project_id = #{id} ;
+    </select>
+
+
+    <select id="getProjectLineNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from temp_lines where projectid = #{id} ;
+    </select>
+
+    <select id="getProjectPointNum" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        select count(*) from temp_points  where projectid =#{id} ;
+    </select>
+
+    <select id="getProjectPolygonNum" parameterType="java.lang.Integer" resultType="java.lang.Integer" >
+        select count(*) from temp_polygon where projectid = #{id} ;
+    </select>
+
+    <select id="getUserByProjectid" parameterType="java.lang.Integer" resultType="com.lidan.Model.User">
+         select a.id as id ,a.projectid as projectid ,a.name as name ,a.passwd as passwd ,
+          a.account as account ,'auth' as permission ,c.num as features from
+          (select id ,projectid,name,passwd,account,'auth' as permission from all_user where projectid = #{id}) as a
+          left join
+            (select b.user_id ,sum(b.num) as num from
+          (select user_id , count(*) as  num from temp_points group by user_id union all select user_id , count(*) as  num from temp_lines group by user_id union all
+          select user_id , count(*) as  num from temp_polygon group by user_id )
+            as b group by user_id
+        ) as c
+          on a.id = c.user_id ;
+    </select>
+    <select id="getExtent" parameterType="java.lang.Integer" resultMap="ExtentMap">
+        select st_x(extent_min) as minx,st_y(extent_min) as miny,
+        st_x(extent_max) as maxx,st_y(extent_max) as maxy
+        from
+        project where id= #{projectid} ;
+    </select>
+</mapper>
