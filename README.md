@@ -16,8 +16,14 @@
 依赖库：durid,mybatis,sprintboot,gson,redis等等。详情请看pom.xml
 
 ### 基本效果
-![](1.png)
-![](2.png)
+![](images/2.png)
+![](images/3.JPG)
+![](images/4.JPG)
+![](images/5.JPG)
+![](images/6.JPG)
+![](images/7.JPG)
+![](images/8.JPG)
+
 
 ### note
 1. 分离的设计，support文件夹中的lib和js可以单独部署。 
