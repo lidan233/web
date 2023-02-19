@@ -1,21 +1,21 @@
-# 这是我大一webgis的课设
-也是我走上java web之路的开始
+# This is the course design of my freshman webgis
+It is also the beginning of my road to java web
 
-# webgis项目
-前端是原生的vue app，后端是java项目，前端使用了openlayers，实现了对遥感图像的矢量化的操作，并支持各种坐标系的导出功能，如4326等。 
+# webgis project
+The front end is a native vue app, the back end is a java project, and the front end uses openlayers, which realizes the vectorization operation of remote sensing images and supports the export function of various coordinate systems, such as 4326, etc.
 
-## 项目重点
+## Project focus
 
-### 项目采用了前后端分离设计
+### The project adopts a front-end and back-end separation design
 
-#### 前端
-依赖库：openlayers, jquery, vue, vue element. 
-实现了：基本的权限控制，项目操作导出，点，线，面等等操作。 
+#### front end
+Dependent libraries: openlayers, jquery, vue, vue element.
+Achieved: basic authority control, project operation export, point, line, surface and other operations.
 
-### 后端
-依赖库：durid,mybatis,sprintboot,gson,redis等等。详情请看pom.xml
+### rear end
+Dependent libraries: durid, mybatis, sprintboot, gson, redis, etc. See pom.xml for details
 
-### 基本效果
+### Basic effect
 ![](images/2.png)
 ![](images/3.JPG)
 ![](images/4.JPG)
@@ -26,8 +26,8 @@
 
 
 ### note
-1. 分离的设计，support文件夹中的lib和js可以单独部署。 
-2. 前后端分离，支持高并发的设计，所有的模块均已微服务化，加工成API。 
+1. Separated design, lib and js in the support folder can be deployed separately.
+2. Separation of front and back ends, supporting high-concurrency design, all modules have been micro-serviced and processed into APIs.
 
 
-### 欢迎关注我的个人网站crazyweirdo.xyz 
+### Welcome to my personal website crazyweirdo.xyz
